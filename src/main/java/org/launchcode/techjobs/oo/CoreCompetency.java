@@ -6,7 +6,20 @@ public class CoreCompetency {
 
     private int id;
     private static int nextId = 1;
+
+    public String getValue() {
+        return value;
+    }
+
     private String value;
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public CoreCompetency() {
         this.id = nextId;
