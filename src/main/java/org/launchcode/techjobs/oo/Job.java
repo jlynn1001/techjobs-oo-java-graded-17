@@ -16,20 +16,43 @@ public class Job {
     // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
     //  other five fields. The second constructor should also call the first in order to initialize
     //  the 'id' field.
-public Job(String difJob, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
+public Job() {
     id = nextId;
     nextId++;
 }
-public Job(String name, Employer employer) {
-    this("Dif job", new Employer("Same name"), new Location("Same location"), new PositionType("Same position type"), new CoreCompetency("Same core competency"));
+public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
+    this();
     this.name = name;
     this.employer = employer;
-    this.location = location;
-    this.positionType = positionType;
-    this.coreCompetency = coreCompetency;
-}
-    // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
-    //  match.
+        if (employer.getValue() == null || employer.getValue().isEmpty()) {
+        this.employer = new Employer("Data not available");
+        }
+        this.location = location;
+        if (location.getValue() == null || location.getValue().isEmpty()) {
+            this.location = new Location("Data not available");
+        }
+        this.positionType = positionType;
+        if (positionType.getValue() == null || positionType.getValue().isEmpty()) {
+            this.positionType = new PositionType("Data not available");
+        }
+        this.coreCompetency = coreCompetency;
+        if (coreCompetency.getValue() == null || coreCompetency.getValue().isEmpty()) {
+            this.coreCompetency = new CoreCompetency("Data not available");
+        }
+    }
+
+    @Override
+    public String toString() {
+            return "\n" +
+                    "ID: " + id + "\n" +
+                    "Name: " + name + "\n" +
+                    "Employer: " + employer + "\n" +
+                    "Location: " + location + "\n" +
+                    "Position Type: " + positionType + "\n" +
+                    "Core Competency: " + coreCompetency +
+                    "\n";
+        }
+
 
     @Override
     public boolean equals(Object o) {
